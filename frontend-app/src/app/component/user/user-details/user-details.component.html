@@ -1,0 +1,39 @@
+<div class="sidebar_main_open sidebar_main_swipe">
+    <app-header></app-header>
+    <app-side-bar></app-side-bar>
+    <div id="page_content">
+        <div class="md-card-toolbar">
+            <h3 class="md-card-toolbar-heading-text">
+                User Details
+                <a routerLink="/user/list" class="md-btn md-btn-primary md-btn-small md-btn-wave-light md-btn-icon " style="float: right;">
+                    <i class="uk-icon-arrow-left"></i> Back
+                </a>
+            </h3>
+        </div>
+        <div *ngIf="user" class="md-card">
+            <div class="md-card-content large-padding">
+                <div id="form_validation" class="uk-form-stacked">
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-2">
+                            <label>Name</label><br>
+                            <p style="margin-top: 2px;"><strong>{{user.name}}</strong></p>
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <label>Role</label><br>
+                            <p style="margin-top: 2px;"><strong>{{user.role.name}}</strong></p>
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <label>Email</label><br>
+                            <p style="margin-top: 2px;"><strong>{{user.email}}</strong></p>
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <label>Mobile</label><br>
+                            <p style="margin-top: 2px;"><strong>{{user.mobile}}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

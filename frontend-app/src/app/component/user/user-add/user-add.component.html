@@ -1,0 +1,102 @@
+<div class="sidebar_main_open sidebar_main_swipe">
+    <app-header></app-header>
+    <app-side-bar></app-side-bar>
+    <div id="page_content">
+        <div class="md-card-toolbar">
+            <h3 class="md-card-toolbar-heading-text">
+                Add User
+                <a routerLink="/user/list" class="md-btn md-btn-primary md-btn-small md-btn-wave-light md-btn-icon " style="float: right;">
+                    <i class="uk-icon-arrow-left"></i> Back
+                </a>
+            </h3>
+        </div>
+
+        <div class="md-card">
+            <div class="md-card-content">
+
+                <form [formGroup]="userAddForm">
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-1">
+                            <div class="uk-form-row">
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-1-2">
+                                        <label>Name*</label>
+                                        <input type="text" class="md-input" [ngClass]="{'md-input-danger': (submitted && f.name.errors) || (f.name.touched && f.name.errors),
+                                        'md-input-success':!f.name.errors }" type="text" formControlName="name" />
+                                        <div *ngIf="(submitted && f.name.errors) || (f.name.touched && f.name.errors) " class="parsley-errors-list">
+                                            <div *ngIf="f.name.errors.required">Name is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-medium-1-2">
+                                        <label>Email*</label>
+                                        <input type="text" class="md-input" formControlName="email" [ngClass]="{ 'md-input-danger': (submitted && f.email.errors) || (f.email.touched && f.email.errors),
+                                        'md-input-success':!f.email.errors }">
+                                        <div *ngIf="(submitted && f.email.errors) || (f.email.touched && f.email.errors) " class="parsley-errors-list">
+                                            <div *ngIf="f.email.errors.required">Email is required.</div>
+                                            <div *ngIf="f.email.errors.email">Email must be a valid email address.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="uk-width-medium-1-1">
+                            <div class="uk-form-row">
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-1-2">
+                                        <label>Mobile*</label>
+                                        <input type="text" class="md-input" formControlName="mobile" maxlength="10" [ngClass]="{ 'md-input-danger': (submitted && f.mobile.errors) || (f.mobile.touched && f.mobile.errors),
+                                        'md-input-success':!f.mobile.errors }">
+                                        <div class="parsley-errors-list" *ngIf="(submitted && f.mobile.errors) || (f.mobile.touched && f.mobile.errors) ">
+                                            <div *ngIf="f.mobile.errors.required">Mobile is required.
+                                            </div>
+                                            <div *ngIf="f.mobile.errors.pattern">Invalid mobile.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-medium-1-2">
+                                        <select class="md-input" data-uk-tooltip="{pos:'top'}" formControlName="role" [ngClass]="{ 'md-input-danger': (submitted && f.role.errors) || (f.role.touched && f.role.errors),
+                                        'md-input-success':!f.role.errors }">
+                                            <option value="" style="color:gray!important">Select Role...</option>
+                                            <option *ngFor="let role of roles" [value]="role._id">{{role.name}}</option>
+                                            </select>
+                                        <div class="parsley-errors-list" *ngIf="(submitted && f.role.errors) || (f.role.touched && f.role.errors) ">
+                                            <div *ngIf="f.role.errors.required">Role is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-medium-1-1">
+                            <div class="uk-form-row">
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-1-2">
+                                        <label>Password*</label>
+                                        <input type="password" class="md-input" [ngClass]="{'md-input-danger': (submitted && f.password.errors) || (f.password.touched && f.password.errors),
+                                        'md-input-success':!f.password.errors }" formControlName="password" />
+                                        <div *ngIf="(submitted && f.password.errors) || (f.password.touched && f.password.errors) " class="parsley-errors-list">
+                                            <div *ngIf="f.password.errors.required">Password is required.</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="uk-grid">
+                        <div class="uk-width-1-1 uk-text-center">
+                            <button type="submit" class="md-btn md-btn-primary" (click)="submit()">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

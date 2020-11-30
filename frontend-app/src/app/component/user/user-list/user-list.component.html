@@ -1,0 +1,69 @@
+<div class="sidebar_main_open sidebar_main_swipe">
+    <app-header></app-header>
+    <app-side-bar></app-side-bar>
+    <div id="page_content">
+        <div class="md-card-toolbar">
+            <h3 class="md-card-toolbar-heading-text">
+                User
+                <a routerLink="/user/add" class="md-btn md-btn-primary md-btn-small md-btn-wave-light md-btn-icon " style="float: right;">
+                    <i class="uk-icon-plus"></i> Add User
+                </a>
+            </h3>
+        </div>
+        <div class="md-card uk-margin-medium-bottom">
+            <div class="md-card-content">
+                <div class="uk-overflow-container">
+                    <table class="uk-table uk-table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sno</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th class="uk-text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.mobile}}</td>
+                                <td>{{user.role.name}}</td>
+                                <td class="uk-text-success">Active</td>
+                                <td class="uk-text-center">
+                                    <a data-uk-modal="{target:'#modal_header_footer'}" (click)="setId(user._id)"><i class="md-icon material-icons" data-uk-tooltip title="Delete">delete</i></a>
+                                    <a routerLink="/user/edit/{{user._id}}"><i class="md-icon material-icons" data-uk-tooltip title="Edit">&#xE254;</i></a>
+                                    <a routerLink="/user/details/{{user._id}}"><i class="md-icon material-icons" data-uk-tooltip title="View" >&#xE88F;</i></a>
+
+                                </td>
+                            </tr>
+                            <tr *ngIf="!users?.length">
+                                <td colspan="8" style="text-align:center;">No records found</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!---table ends here-->
+
+        </div>
+    </div>
+
+    <!--model-->
+    <div class="uk-modal" id="modal_header_footer">
+        <div class="uk-modal-dialog">
+            <div class="uk-modal-header">
+                <h3 class="uk-modal-title "><strong>Confirm </strong>&nbsp;<i class="material-icons" data-uk-tooltip="{pos:'top'}" title="headline tooltip">&#xE8FD;</i>
+
+                </h3>
+            </div>
+            <p>Are you sure you want to delete this record ?</p>
+            <div class="uk-modal-footer uk-text-right">
+                <button type="button" class="md-btn  md-btn-flat md-btn-flat-success uk-modal-close">Cancel</button><button type="button" class="md-btn md-btn-flat md-btn-flat-danger uk-modal-close" (click)="delete()">Delete</button>
+            </div>
+        </div>
+    </div>
